@@ -41,27 +41,19 @@ distritos = {
     }
 }
 
-
-# Número de pacientes a generar
 num_patients = 1200
 
-# Generamos datos para los pacientes
 patients_data = []
 district_names = list(distritos.keys())
 
 for patient_id in range(1, num_patients + 1):
-    # Elegir un distrito aleatorio
     chosen_district = np.random.choice(district_names)
 
-    # Generar coordenadas aleatorias dentro del rango del distrito
     lat = np.random.uniform(distritos[chosen_district]["lat_range"][0], distritos[chosen_district]["lat_range"][1])
     lon = np.random.uniform(distritos[chosen_district]["lon_range"][0], distritos[chosen_district]["lon_range"][1])
 
-    # Gravedad aleatoria entre 1 y 5
     severity = np.random.randint(1, 6)  # 1 a 5
 
-
-    # Crear diccionario con la información del paciente
     patient_info = {
         "id": patient_id,
         "latitude": lat,
@@ -71,8 +63,6 @@ for patient_id in range(1, num_patients + 1):
 
     patients_data.append(patient_info)
 
-# Crear un DataFrame y guardarlo en un CSV
 patients_df = pd.DataFrame(patients_data)
 
-# Guardar en un archivo CSV sin índice
 patients_df.to_csv("Patients.csv", index=False)
